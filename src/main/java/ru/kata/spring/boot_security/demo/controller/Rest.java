@@ -48,10 +48,7 @@ public class Rest {
     }
 
     @PatchMapping("/user/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody @Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
-        }
+    public ResponseEntity<HttpStatus> update(@RequestBody @Valid User user) {
         userService.setUserRoles(user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);

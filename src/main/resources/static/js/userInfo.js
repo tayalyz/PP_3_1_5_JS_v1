@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', handleUserPageLoader);
 
-
 async function getData() {
     const url = 'api/user';
     let response = await fetch(url);
     return response.json();
 }
-async function buildPage(user, table) {
+
+async function createPage(user, table) {
     let roles = [];
     for (let role of user.roles) {
         roles.push(' ' + role.name.toString().replaceAll('ROLE_', ''));
@@ -21,9 +21,10 @@ async function buildPage(user, table) {
         '<td>' + roles + '</td>';
     table.appendChild(tableRow);
 }
+
 async function handleUserPageLoader(event) {
     event.preventDefault();
     let table = document.getElementById('user-info');
     let user = await getData();
-    await buildPage(user, table);
+    await createPage(user, table);
 }

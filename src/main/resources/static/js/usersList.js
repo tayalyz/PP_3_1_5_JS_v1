@@ -1,10 +1,14 @@
-document.addEventListener('DOMContentLoaded', tableBuilder);
+document.addEventListener('DOMContentLoaded', buildTable);
 
-async function tableBuilder() {
+async function getData() {
+    const url = '/api/users';
+    let response = await fetch(url);
+    return response.json();
+}
 
+async function buildTable() {
     const table = document.getElementById('users');
     let users = await getData();
-
     let userData = '';
     for (let user of users) {
         let roles = [];
@@ -26,9 +30,4 @@ async function tableBuilder() {
         userData += '</tr>';
     }
     table.innerHTML = userData;
-}
-async function getData() {
-    const url = '/api/users';
-    let response = await fetch(url);
-    return response.json();
 }

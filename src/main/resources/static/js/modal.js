@@ -5,8 +5,8 @@ async function getUser(id) {
     let response = await fetch(url);
     return response.json();
 }
-async function editUser(id) {
 
+async function editUser(id) {
     let data = await getUser(id);
 
     const { elements } = modalForm;
@@ -84,7 +84,6 @@ async function patchData(event) {
 
     const form = event.currentTarget;
     const url = form.action;
-
     const formData = new FormData(form);
     let object = {};
     formData.forEach((value, key) => {
@@ -113,27 +112,21 @@ async function patchData(event) {
 
     await fetch(url, fetchOptions);
 
-
-
     form.reset();
     $('#close').click();
-    await tableBuilder();
+    await buildTable();
 }
 
 async function deleteData(event) {
     event.preventDefault();
-
     const form = event.currentTarget;
     const url = form.action;
-
-
     const fetchOptions = {
         method: "DELETE",
     };
 
     await fetch(url, fetchOptions);
-
     form.reset();
     $('#close').click();
-    await tableBuilder();
+    await buildTable();
 }

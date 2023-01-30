@@ -6,7 +6,6 @@ async function handleFormSubmit(event) {
 
     const form = event.currentTarget;
     const url = form.action;
-
     const formData = new FormData(form);
     let object = {};
     formData.forEach((value, key) => {
@@ -37,10 +36,10 @@ async function handleFormSubmit(event) {
 
     form.reset();
     await change_tab();
-    await tableBuilder();
+    await buildTable();
 }
-function change_tab(){
 
+function change_tab(){
     const newUserTab = document.getElementById('new-user-tab');
     const newUser = document.getElementById('new-user');
     newUserTab.setAttribute('class', 'nav-link');
@@ -50,5 +49,4 @@ function change_tab(){
     const userList = document.getElementById('user-list');
     userListTab.setAttribute('class', 'nav-link active show');
     userList.setAttribute('class', 'tab-pane fade active show');
-
 }
